@@ -4,13 +4,17 @@ require 'json'
 
 module SlackBlocks
   class Collection
+    MAX_ELEMENTS_SIZE = 50
+
     def initialize
       @blocks = []
     end
 
-    # TODO: Add in some validation on whether this collection can handle
-    # the max number of blocks.
     def <<(block)
+      # We check the current size to see if the @blocks array can fits anymore.
+      if @blocks.size >= MAX_ELEMENTS_SIZE
+        raise SlackBlocks::TooManyElements, "the maximum number of blocks to send at one time is #{MAX_ELEMENTS_SIZE}"
+      end
       @blocks << block
     end
 
