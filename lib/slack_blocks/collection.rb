@@ -2,8 +2,10 @@
 
 require 'json'
 
+require_relative 'context'
 require_relative 'divider'
 require_relative 'header'
+require_relative 'image'
 
 module SlackBlocks
   class Collection
@@ -11,9 +13,9 @@ module SlackBlocks
     VALID_BLOCK_KLASSES = [
       # actions,
       # conditions,
-      # context,
+      SlackBlocks::Context,
       SlackBlocks::Divider,
-      # image,
+      SlackBlocks::Image,
       # section,
       SlackBlocks::Header,
       # table,
