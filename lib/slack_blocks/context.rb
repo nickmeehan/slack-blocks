@@ -20,8 +20,12 @@ module SlackBlocks
     VALID_BLOCK_KLASS_STRINGS = VALID_BLOCK_KLASSES.join(', ')
 
     def initialize(elements: [])
+      # TODO: Change these into helpers, or adapt the current ones for dual purpose use.
       if elements.size > MAX_ELEMENTS_SIZE
         raise SlackBlocks::TooManyElements, "the maximum number of elements for a Context block is #{MAX_ELEMENTS_SIZE}"
+      end
+      elements.each do |element_block|
+        validate_block_klass(element_block)
       end
       @elements = elements
     end
