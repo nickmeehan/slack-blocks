@@ -52,8 +52,6 @@ module SlackBlocks
         raise SlackBlocks::InvalidBlockType,
           "#{incoming_block.class} is not a valid top-level block type, valid block types are #{VALID_BLOCK_KLASS_STRINGS}"
       end
-      if @blocks.size >= MAX_ELEMENTS_SIZE
-      end
     end
 
     def validate_block_addition
