@@ -13,7 +13,7 @@ module SlackBlocks
     def as_json
       {
         'type' => 'header',
-        'text' => @text
+        'text' => @text.as_json
       }
     end
   end
