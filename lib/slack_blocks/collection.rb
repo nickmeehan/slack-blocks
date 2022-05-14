@@ -2,6 +2,7 @@
 
 require 'json'
 
+require_relative 'actions'
 require_relative 'context'
 require_relative 'divider'
 require_relative 'file'
@@ -13,7 +14,7 @@ module SlackBlocks
     MAX_ELEMENTS_SIZE = 50
     # TODO: Figure out why files aren't supported, and either remove support for it, or just leave it.
     VALID_BLOCK_KLASSES = [
-      # actions,
+      SlackBlocks::Actions,
       # conditions,
       SlackBlocks::Context,
       SlackBlocks::Divider,

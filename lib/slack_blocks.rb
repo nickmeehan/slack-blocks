@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'slack_blocks/actions'
+require_relative 'slack_blocks/button'
 require_relative 'slack_blocks/collection'
+require_relative 'slack_blocks/confirm'
 require_relative 'slack_blocks/context'
 require_relative 'slack_blocks/divider'
 require_relative 'slack_blocks/file'
