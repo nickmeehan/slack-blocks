@@ -2,6 +2,8 @@
 
 require 'json'
 
+require_relative 'concerns/collectable'
+
 require_relative 'actions'
 require_relative 'context'
 require_relative 'divider'
@@ -11,6 +13,8 @@ require_relative 'image'
 
 module SlackBlocks
   class Collection
+    include Collectable
+
     MAX_ELEMENTS_SIZE = 50
     # TODO: Figure out why files aren't supported, and either remove support for it, or just leave it.
     VALID_BLOCK_KLASSES = [

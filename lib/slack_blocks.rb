@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'slack_blocks/concerns/collectable'
+
 require_relative 'slack_blocks/actions'
 require_relative 'slack_blocks/button'
 require_relative 'slack_blocks/collection'
