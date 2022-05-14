@@ -3,6 +3,7 @@
 require_relative 'slack_blocks/collection'
 require_relative 'slack_blocks/context'
 require_relative 'slack_blocks/divider'
+require_relative 'slack_blocks/file'
 require_relative 'slack_blocks/header'
 require_relative 'slack_blocks/image'
 require_relative 'slack_blocks/markdown'
