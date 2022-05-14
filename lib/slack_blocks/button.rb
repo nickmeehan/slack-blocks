@@ -44,7 +44,7 @@ module SlackBlocks
       {
         'type' => 'button',
         'action_id' => @action_id,
-        'text' => @text.as_json
+        'text' => @text.as_json,
         'url' => @url,
         'value' => @value,
         'confirm' => @confirm&.as_json,
