@@ -28,6 +28,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  # ActiveSupport dependency covering April 2018 - May 2022 (so far).
+  spec.add_dependency "activesupport", "~> 5.2.0"
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_development_dependency "rspec", "~> 3.11"
 
