@@ -1,29 +1,23 @@
 # frozen_string_literal: true
 
-require 'date'
-
-# Supports the DatePicker element.
+# Supports the TimePicker element.
 # This can be used in SlackBlocks::Actions, SlackBlocks::Section and SlackBlocks::Input blocks.
 #
-# @see https://api.slack.com/reference/block-kit/block-elements#datepicker
+# @see https://api.slack.com/reference/block-kit/block-elements#timepicker
 module SlackBlocks
-  class DatePicker
+  class TimePicker
     # The necessary format according to Slack.
-    INITIAL_DATE_STRF_FORMAT = '%Y-%m-%d'
+    TIME_FORMAT = /^([01][0-9]|2[0-3]):[0-5][0-9]$/
 
     def initialize(
       action_id:,
       placeholder: nil,
-      initial_date: nil,
+      initial_time: nil,
       confirm: nil,
       focus_on_load: false
     )
-      unless initial_date.nil?
-        begin
-          Date.strptime(initial_date, INITIAL_DATE_STRF_FORMAT)
-        rescue Date::Error
-          raise ArgumentError, 'initial_date format must be YYYY-MM-DD'
-        end
+      unless initial_time.nil?
+        raise ArgumentError, 'initial_time format must be HH:mm' unless initial_time.match?(TIME_FORMAT)
       end
       @action_id = action_id
       @placeholder =
@@ -34,17 +28,17 @@ module SlackBlocks
         else
           placeholder
         end
-      @initial_date = initial_date
+      @initial_time = initial_time
       @confirm = confirm
       @focus_on_load = focus_on_load
     end
 
     def as_json
       {
-        'type' => 'datepicker',
+        'type' => 'timepicker',
         'action_id' => @action_id,
         'placeholder' => @placeholder&.as_json,
-        'initial_date' => @initial_date,
+        'initial_time' => @initial_time,
         'confirm' => @confirm&.as_json,
         'focus_on_load' => @focus_on_load
       }.compact

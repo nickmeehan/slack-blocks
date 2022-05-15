@@ -16,6 +16,7 @@ require_relative 'slack_blocks/image'
 require_relative 'slack_blocks/markdown'
 require_relative 'slack_blocks/option'
 require_relative 'slack_blocks/plain_text'
+require_relative 'slack_blocks/time_picker'
 require_relative 'slack_blocks/version'
 
 module SlackBlocks
