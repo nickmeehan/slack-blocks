@@ -34,7 +34,8 @@ module SlackBlocks
       end
       @action_id = action_id
       @options = options
-      @initial_options = initial_options
+      # We want to not pass this at all if the collection is empty, as it throws an error.
+      @initial_options = initial_options.empty? ? nil : initial_options
       @confirm = confirm
       @focus_on_load = focus_on_load
     end
@@ -44,7 +45,7 @@ module SlackBlocks
         'type' => 'checkboxes',
         'action_id' => @action_id,
         'options' => @options.map(&:as_json),
-        'initial_options' => @initial_options.map(&:as_json),
+        'initial_options' => @initial_options&.map(&:as_json),
         'confirm' => @confirm&.as_json,
         'focus_on_load' => @focus_on_load
       }.compact
