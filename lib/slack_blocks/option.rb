@@ -32,7 +32,7 @@ module SlackBlocks
         else
           description
         end
-      @url = = url
+      @url = url
     end
 
     def ==(other_option)

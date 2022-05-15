@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'button'
+require_relative 'checkboxes'
 
 # Supports the Actions object.
 #
@@ -10,7 +11,7 @@ module SlackBlocks
     include Collectable
 
     max_collection_size(25)
-    valid_block_klasses(SlackBlocks::Button)
+    valid_block_klasses(SlackBlocks::Button, SlackBlocks::Checkboxes)
     collection_instance_variable_name('@elements')
 
     def initialize(elements: [])
