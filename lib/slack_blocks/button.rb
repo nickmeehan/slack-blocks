@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Supports the Button element.
+# This can be used in SlackBlocks::Actions and SlackBlocks::Section blocks.
 #
 # @see https://api.slack.com/reference/block-kit/block-elements#button
 module SlackBlocks
