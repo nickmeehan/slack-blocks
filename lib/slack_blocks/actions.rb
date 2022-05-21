@@ -4,6 +4,7 @@ require_relative 'button'
 require_relative 'checkboxes'
 require_relative 'date_picker'
 require_relative 'overflow'
+require_relative 'radio_buttons'
 require_relative 'time_picker'
 
 # Supports the Actions object.
@@ -19,6 +20,7 @@ module SlackBlocks
       SlackBlocks::Checkboxes,
       SlackBlocks::DatePicker,
       SlackBlocks::Overflow,
+      SlackBlocks::RadioButtons,
       SlackBlocks::TimePicker
     )
     collection_instance_variable_name('@elements')

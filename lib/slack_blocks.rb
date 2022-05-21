@@ -17,6 +17,7 @@ require_relative 'slack_blocks/markdown'
 require_relative 'slack_blocks/option'
 require_relative 'slack_blocks/overflow'
 require_relative 'slack_blocks/plain_text'
+require_relative 'slack_blocks/radio_buttons'
 require_relative 'slack_blocks/time_picker'
 require_relative 'slack_blocks/version'
 
