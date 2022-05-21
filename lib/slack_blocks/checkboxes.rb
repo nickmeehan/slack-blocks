@@ -21,19 +21,14 @@ module SlackBlocks
       confirm: nil,
       focus_on_load: false
     )
-      # TODO: Change these into helpers, or adapt the current ones for dual purpose use.
-      if options.size > max_collection_size
-        raise SlackBlocks::TooManyElements, "the maximum number of options for a Checkboxes block is #{max_collection_size}"
-      end
-      options.each do |element_block|
-        validate_incoming_klass(element_block.class)
-      end
       remaining_initial_options = initial_options - options
       if remaining_initial_options.any?
         raise ArgumentError, 'please ensure any initial_options passed are included in the options collection'
       end
       @action_id = action_id
       @options = options
+      validate_collection_size
+      validate_collection_contents
       # We want to not pass this at all if the collection is empty, as it throws an error.
       @initial_options = initial_options.empty? ? nil : initial_options
       @confirm = confirm

@@ -21,13 +21,6 @@ module SlackBlocks
       confirm: nil,
       focus_on_load: false
     )
-      # TODO: Change these into helpers, or adapt the current ones for dual purpose use.
-      if options.size > max_collection_size
-        raise SlackBlocks::TooManyElements, "the maximum number of options for a Radio Buttons block is #{max_collection_size}"
-      end
-      options.each do |element_block|
-        validate_incoming_klass(element_block.class)
-      end
       unless initial_option.nil?
         validate_incoming_klass(initial_option.class)
         unless options.include?(initial_option)
@@ -36,6 +29,8 @@ module SlackBlocks
       end
       @action_id = action_id
       @options = options
+      validate_collection_size
+      validate_collection_contents
       @initial_option = initial_option
       @confirm = confirm
       @focus_on_load = focus_on_load

@@ -20,15 +20,10 @@ module SlackBlocks
       options: [],
       confirm: nil
     )
-      # TODO: Change these into helpers, or adapt the current ones for dual purpose use.
-      if options.size > max_collection_size
-        raise SlackBlocks::TooManyElements, "the maximum number of options for an Overflow block is #{max_collection_size}"
-      end
-      options.each do |element_block|
-        validate_incoming_klass(element_block.class)
-      end
       @action_id = action_id
       @options = options
+      validate_collection_size
+      validate_collection_contents
       @confirm = confirm
     end
 

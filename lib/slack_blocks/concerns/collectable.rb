@@ -38,7 +38,7 @@ module Collectable
 
   def <<(incoming_element)
     validate_incoming_klass(incoming_element.class)
-    validate_block_addition
+    validate_collection_addition
     collection_instance_variable << incoming_element
   end
 
@@ -57,11 +57,28 @@ module Collectable
     end
   end
 
-  def validate_block_addition
-    # We check the current size to see if the collection can fit anymore.
-    if collection_instance_variable.size >= max_collection_size
-      raise SlackBlocks::TooManyElements, "the maximum number of elements for a #{self.class} block is #{max_collection_size}"
+  def validate_collection_contents
+    collection_instance_variable.each do |element_block|
+      validate_incoming_klass(element_block.class)
     end
+  end
+
+  # We should only use this validation upon setting the collection in an initializer.
+  def validate_collection_size
+    # The collection is valid here.
+    return if collection_instance_variable.size <= max_collection_size
+
+    # Otherwise, inform the user the collection has too many elements.
+    raise SlackBlocks::TooManyElements, "the maximum number of elements for a #{self.class} block is #{max_collection_size}"
+  end
+
+  # We look to validate the size of the of the collection as less than the max ONLY when attempting to add more elements.
+  def validate_collection_addition
+    # We check the current size to see if the collection can fit anymore.
+    return if collection_instance_variable.size < max_collection_size
+
+    # Otherwise, we disallow the addition of the block.
+    raise SlackBlocks::TooManyElements, "the maximum number of elements for a #{self.class} block is #{max_collection_size}"
   end
 
   def validate_minimum_blocks

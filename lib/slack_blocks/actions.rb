@@ -28,14 +28,9 @@ module SlackBlocks
     collection_instance_variable_name('@elements')
 
     def initialize(elements: [])
-      # TODO: Change these into helpers, or adapt the current ones for dual purpose use.
-      if elements.size > max_collection_size
-        raise SlackBlocks::TooManyElements, "the maximum number of elements for an Actions block is #{max_collection_size}"
-      end
-      elements.each do |element_block|
-        validate_incoming_klass(element_block.class)
-      end
       @elements = elements
+      validate_collection_size
+      validate_collection_contents
     end
 
     def as_json
