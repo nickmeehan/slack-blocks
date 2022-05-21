@@ -3,6 +3,7 @@
 require_relative 'button'
 require_relative 'checkboxes'
 require_relative 'date_picker'
+require_relative 'overflow'
 require_relative 'time_picker'
 
 # Supports the Actions object.
@@ -13,7 +14,13 @@ module SlackBlocks
     include Collectable
 
     max_collection_size(25)
-    valid_block_klasses(SlackBlocks::Button, SlackBlocks::Checkboxes, SlackBlocks::DatePicker, SlackBlocks::TimePicker)
+    valid_block_klasses(
+      SlackBlocks::Button,
+      SlackBlocks::Checkboxes,
+      SlackBlocks::DatePicker,
+      SlackBlocks::Overflow,
+      SlackBlocks::TimePicker
+    )
     collection_instance_variable_name('@elements')
 
     def initialize(elements: [])
