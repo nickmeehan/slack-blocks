@@ -29,6 +29,7 @@ module Collectable
       @min_collection_size = size
     end
 
+    # The name of the primary collection for a block.
     def collection_instance_variable_name(variable_name = nil)
       return @collection_instance_variable_name if variable_name.nil?
       @collection_instance_variable_name = variable_name
@@ -43,6 +44,7 @@ module Collectable
 
   private
 
+  # There should only ever be one collection set.
   def collection_instance_variable
     self.instance_variable_get(self.class.collection_instance_variable_name)
   end

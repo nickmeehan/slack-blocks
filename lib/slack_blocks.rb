@@ -19,6 +19,7 @@ require_relative 'slack_blocks/overflow'
 require_relative 'slack_blocks/plain_text'
 require_relative 'slack_blocks/radio_buttons'
 require_relative 'slack_blocks/time_picker'
+require_relative 'slack_blocks/ungrouped_static_select'
 require_relative 'slack_blocks/version'
 
 module SlackBlocks

@@ -6,6 +6,7 @@ require_relative 'date_picker'
 require_relative 'overflow'
 require_relative 'radio_buttons'
 require_relative 'time_picker'
+require_relative 'ungrouped_static_select'
 
 # Supports the Actions object.
 #
@@ -21,7 +22,8 @@ module SlackBlocks
       SlackBlocks::DatePicker,
       SlackBlocks::Overflow,
       SlackBlocks::RadioButtons,
-      SlackBlocks::TimePicker
+      SlackBlocks::TimePicker,
+      SlackBlocks::UngroupedStaticSelect
     )
     collection_instance_variable_name('@elements')
 
