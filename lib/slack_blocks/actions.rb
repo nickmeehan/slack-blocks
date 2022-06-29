@@ -3,6 +3,7 @@
 require_relative 'button'
 require_relative 'checkboxes'
 require_relative 'date_picker'
+require_relative 'grouped_static_select'
 require_relative 'overflow'
 require_relative 'radio_buttons'
 require_relative 'time_picker'
@@ -20,6 +21,7 @@ module SlackBlocks
       SlackBlocks::Button,
       SlackBlocks::Checkboxes,
       SlackBlocks::DatePicker,
+      SlackBlocks::GroupedStaticSelect,
       SlackBlocks::Overflow,
       SlackBlocks::RadioButtons,
       SlackBlocks::TimePicker,

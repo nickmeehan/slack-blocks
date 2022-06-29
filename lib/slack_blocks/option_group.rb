@@ -27,6 +27,10 @@ module SlackBlocks
       validate_collection_contents
     end
 
+    def contains_option?(option)
+      @options.include?(option)
+    end
+
     def as_json
       {
         'label' => @label.as_json,
