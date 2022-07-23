@@ -2,6 +2,7 @@
 
 require_relative 'button'
 require_relative 'checkboxes'
+require_relative 'conversations_select'
 require_relative 'date_picker'
 require_relative 'external_select'
 require_relative 'grouped_static_select'
@@ -22,6 +23,7 @@ module SlackBlocks
     valid_block_klasses(
       SlackBlocks::Button,
       SlackBlocks::Checkboxes,
+      SlackBlocks::ConversationsSelect,
       SlackBlocks::DatePicker,
       SlackBlocks::ExternalSelect,
       SlackBlocks::GroupedStaticSelect,
