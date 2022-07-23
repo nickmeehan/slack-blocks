@@ -19,7 +19,7 @@ module SlackBlocks
       primary: false,
       danger: false
     )
-      fail ArgumentError, 'buttons may be primary or danger, not both' if primary && danger
+      raise ArgumentError, 'buttons may be primary or danger, not both' if primary && danger
       @action_id = action_id
       @text =
         if text.is_a?(String)
@@ -27,7 +27,7 @@ module SlackBlocks
         elsif text.is_a?(SlackBlocks::PlainText)
           text
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText to text keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText to text keyword argument'
         end
       @url = url
       @value = value

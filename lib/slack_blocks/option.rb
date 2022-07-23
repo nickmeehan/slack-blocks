@@ -21,7 +21,7 @@ module SlackBlocks
         elsif text.is_a?(SlackBlocks::Markdown)
           text
         else
-          fail ArgumentError, 'must pass a String, SlackBlocks::PlainText object or SlackBlocks::Markdown object to text keyword argument'
+          raise ArgumentError, 'must pass a String, SlackBlocks::PlainText object or SlackBlocks::Markdown object to text keyword argument'
         end
       @value = value
       @description =

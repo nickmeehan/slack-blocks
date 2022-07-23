@@ -20,7 +20,7 @@ module SlackBlocks
         elsif label.is_a?(SlackBlocks::PlainText)
           label
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText to label keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText to label keyword argument'
         end
       @options = options
       validate_collection_size

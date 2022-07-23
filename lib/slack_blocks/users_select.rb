@@ -22,7 +22,7 @@ module SlackBlocks
         elsif placeholder.is_a?(SlackBlocks::PlainText)
           placeholder
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText to placeholder keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText to placeholder keyword argument'
         end
       @initial_user = initial_user
       @confirm = confirm

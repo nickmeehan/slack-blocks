@@ -16,14 +16,14 @@ module SlackBlocks
       primary: false,
       danger: false
     )
-      fail ArgumentError, 'buttons may be primary or danger, not both' if primary && danger
+      raise ArgumentError, 'buttons may be primary or danger, not both' if primary && danger
       @title =
         if title.is_a?(String)
           SlackBlocks::PlainText.new(text: title)
         elsif title.is_a?(SlackBlocks::PlainText)
           title
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText object to title keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText object to title keyword argument'
         end
       # Default text to a PlainText object.
       @dialog_text =
@@ -34,7 +34,7 @@ module SlackBlocks
         elsif dialog_text.is_a?(SlackBlocks::Markdown)
           dialog_text
         else
-          fail ArgumentError, 'must pass a String, SlackBlocks::PlainText object or SlackBlocks::Markdown object to dialog_text keyword argument'
+          raise ArgumentError, 'must pass a String, SlackBlocks::PlainText object or SlackBlocks::Markdown object to dialog_text keyword argument'
         end
       @confirm_text =
         if confirm_text.is_a?(String)
@@ -42,7 +42,7 @@ module SlackBlocks
         elsif confirm_text.is_a?(SlackBlocks::PlainText)
           confirm_text
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText object to confirm_text keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText object to confirm_text keyword argument'
         end
       @deny_text =
         if deny_text.is_a?(String)
@@ -50,7 +50,7 @@ module SlackBlocks
         elsif deny_text.is_a?(SlackBlocks::PlainText)
           deny_text
         else
-          fail ArgumentError, 'must pass a String or SlackBlocks::PlainText object to deny_text keyword argument'
+          raise ArgumentError, 'must pass a String or SlackBlocks::PlainText object to deny_text keyword argument'
         end
       @style =
         if primary

@@ -13,7 +13,7 @@ require_relative 'time_picker'
 require_relative 'ungrouped_static_select'
 require_relative 'users_select'
 
-# Supports the Actions object.
+# Supports the Actions block object.
 #
 # @see https://api.slack.com/reference/block-kit/blocks#actions
 module SlackBlocks
