@@ -4,6 +4,7 @@ require_relative 'slack_blocks/concerns/collectable'
 
 require_relative 'slack_blocks/actions'
 require_relative 'slack_blocks/button'
+require_relative 'slack_blocks/channels_select'
 require_relative 'slack_blocks/checkboxes'
 require_relative 'slack_blocks/collection'
 require_relative 'slack_blocks/confirm'

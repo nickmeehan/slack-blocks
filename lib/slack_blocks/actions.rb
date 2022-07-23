@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'button'
+require_relative 'channels_select'
 require_relative 'checkboxes'
 require_relative 'conversations_select'
 require_relative 'date_picker'
@@ -22,6 +23,7 @@ module SlackBlocks
     max_collection_size(25)
     valid_block_klasses(
       SlackBlocks::Button,
+      SlackBlocks::ChannelsSelect,
       SlackBlocks::Checkboxes,
       SlackBlocks::ConversationsSelect,
       SlackBlocks::DatePicker,
