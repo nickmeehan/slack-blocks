@@ -36,6 +36,7 @@ module SlackBlocks
       SlackBlocks::UsersSelect
     )
     collection_instance_variable_name('@elements')
+    collection_name('elements')
 
     def initialize(elements: [])
       @elements = elements

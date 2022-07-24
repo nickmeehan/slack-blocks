@@ -29,6 +29,12 @@ module Collectable
       @min_collection_size = size
     end
 
+    # The name of collection for a block.
+    def collection_name(variable_name = nil)
+      return @collection_name if variable_name.nil?
+      @collection_name = variable_name
+    end
+
     # The name of the primary collection for a block.
     def collection_instance_variable_name(variable_name = nil)
       return @collection_instance_variable_name if variable_name.nil?
@@ -65,11 +71,12 @@ module Collectable
 
   # We should only use this validation upon setting the collection in an initializer.
   def validate_collection_size
+    validate_minimum_blocks unless min_collection_size.nil?
     # The collection is valid here.
     return if collection_instance_variable.size <= max_collection_size
 
     # Otherwise, inform the user the collection has too many elements.
-    raise SlackBlocks::TooManyElements, "the maximum number of elements for a #{self.class} block is #{max_collection_size}"
+    raise SlackBlocks::TooManyElements, "the maximum number of #{collection_name} for a #{self.class} block is #{max_collection_size}"
   end
 
   # We look to validate the size of the of the collection as less than the max ONLY when attempting to add more elements.
@@ -78,13 +85,13 @@ module Collectable
     return if collection_instance_variable.size < max_collection_size
 
     # Otherwise, we disallow the addition of the block.
-    raise SlackBlocks::TooManyElements, "the maximum number of elements for a #{self.class} block is #{max_collection_size}"
+    raise SlackBlocks::TooManyElements, "the maximum number of #{collection_name} for a #{self.class} block is #{max_collection_size}"
   end
 
   def validate_minimum_blocks
     # We check the current size to see if the number of elements requires the minimum threshold for rendering.
     if collection_instance_variable.size < min_collection_size
-      raise SlackBlocks::NotEnoughElements, "the minimum number of elements for a #{self.class} block is #{min_collection_size}"
+      raise SlackBlocks::NotEnoughElements, "the minimum number of #{collection_name} for a #{self.class} block is #{min_collection_size}"
     end
   end
 
@@ -94,5 +101,9 @@ module Collectable
 
   def min_collection_size
     self.class.min_collection_size
+  end
+
+  def collection_name
+    self.class.collection_name
   end
 end

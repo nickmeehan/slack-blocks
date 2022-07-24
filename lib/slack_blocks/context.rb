@@ -14,6 +14,7 @@ module SlackBlocks
     max_collection_size(10)
     valid_block_klasses(SlackBlocks::Image, SlackBlocks::Markdown, SlackBlocks::PlainText)
     collection_instance_variable_name('@elements')
+    collection_name('elements')
 
     def initialize(elements: [])
       @elements = elements

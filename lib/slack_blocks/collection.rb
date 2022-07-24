@@ -8,6 +8,7 @@ require_relative 'divider'
 require_relative 'file'
 require_relative 'header'
 require_relative 'image'
+require_relative 'section'
 
 module SlackBlocks
   class Collection
@@ -21,9 +22,9 @@ module SlackBlocks
       SlackBlocks::Context,
       SlackBlocks::Divider,
       # SlackBlocks::File,
-      SlackBlocks::Image,
-      # section,
       SlackBlocks::Header,
+      SlackBlocks::Image,
+      SlackBlocks::Section,
       # table,
       # contact_card,
       # share_shortcut,
@@ -32,6 +33,7 @@ module SlackBlocks
     )
 
     collection_instance_variable_name('@blocks')
+    collection_name('blocks')
 
     def initialize
       @blocks = []

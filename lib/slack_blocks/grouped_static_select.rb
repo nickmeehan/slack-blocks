@@ -13,6 +13,7 @@ module SlackBlocks
     max_collection_size(100)
     valid_block_klasses(SlackBlocks::OptionGroup)
     collection_instance_variable_name('@option_groups')
+    collection_name('option groups')
 
     def initialize(
       action_id:,
