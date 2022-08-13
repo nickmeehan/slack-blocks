@@ -29,7 +29,7 @@ module SlackBlocks
     end
 
     def contains_option?(option)
-      @options.include?(option)
+      @options.to_set.include?(option)
     end
 
     def as_json
