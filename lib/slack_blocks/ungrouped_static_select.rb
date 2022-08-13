@@ -25,7 +25,7 @@ module SlackBlocks
     )
       unless initial_option.nil?
         validate_incoming_klass(initial_option.class)
-        unless options.include?(initial_option)
+        unless options.to_set.include?(initial_option)
           raise ArgumentError, 'please ensure the initial_option passed is included in the options collection'
         end
       end

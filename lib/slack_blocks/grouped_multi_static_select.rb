@@ -70,6 +70,7 @@ module SlackBlocks
         'option_groups' => @option_groups.map(&:as_json),
         'initial_options' => @initial_options&.map(&:as_json),
         'confirm' => @confirm&.as_json,
+        'max_selected_items' => @max_selected_items,
         'focus_on_load' => @focus_on_load
       }.compact
     end
@@ -79,7 +80,7 @@ module SlackBlocks
     def validate_max_selected_items_minimum
       return if @max_selected_items.nil?
       if @max_selected_items < MINIMUM_MAX_SELECTED_ITEMS
-        raise ArgumentError, 'the minimum number for max_selected_items if passed is 1'
+        raise ArgumentError, "the minimum number for max_selected_items if passed is #{MINIMUM_MAX_SELECTED_ITEMS}"
       end
     end
   end
