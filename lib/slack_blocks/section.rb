@@ -7,6 +7,7 @@ require_relative 'checkboxes'
 require_relative 'conversations_select'
 require_relative 'date_picker'
 require_relative 'external_select'
+require_relative 'grouped_multi_static_select'
 require_relative 'grouped_static_select'
 require_relative 'image'
 require_relative 'overflow'
@@ -42,6 +43,7 @@ module SlackBlocks
       SlackBlocks::ConversationsSelect,
       SlackBlocks::DatePicker,
       SlackBlocks::ExternalSelect,
+      SlackBlocks::GroupedMultiStaticSelect,
       SlackBlocks::GroupedStaticSelect,
       SlackBlocks::Overflow,
       SlackBlocks::RadioButtons,
