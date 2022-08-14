@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
-require_relative 'option_group'
+require_relative 'option'
 
-# Supports the grouped version of the Multi Static Select element, a subset of a MultiSelect element.
+# Supports the ungrouped version of the Multi Static Select element, a subset of a MultiSelect element.
 # This can be used in SlackBlocks::Section and SlackBlocks::Input blocks.
 #
 # @see https://api.slack.com/reference/block-kit/block-elements#static_multi_select
 module SlackBlocks
-  class GroupedMultiStaticSelect
+  class UngroupedMultiStaticSelect
     include Collectable
 
     MINIMUM_MAX_SELECTED_ITEMS = 1
 
     max_collection_size(100)
-    valid_block_klasses(SlackBlocks::OptionGroup)
-    collection_instance_variable_name('@option_groups')
-    collection_name('option groups')
+    valid_block_klasses(SlackBlocks::Option)
+    collection_instance_variable_name('@options')
+    collection_name('options')
 
     def initialize(
       action_id:,
       placeholder:,
-      option_groups: [],
+      options: [],
       initial_options: nil,
       confirm: nil,
       max_selected_items: nil,
@@ -29,19 +29,15 @@ module SlackBlocks
       unless initial_options.nil?
         raise ArgumentError, 'initial_options must be a collection' unless initial_options.is_a?(Array)
         raise ArgumentError, 'initial_options must contain elements if a collection is to be passed' if initial_options.empty?
+        options_set = options.to_set
         # We loop through all initial_options here because we need to do this validation work on a per option basis
         # anyways.
         initial_options.each do |initial_option|
-          # We skip using the helper here because the initial_options are actually a SlackBlocks::Option objects, which
-          # are nested within SlackBlocks::OptionGroup objects.
-          if initial_option.class != SlackBlocks::Option
-            raise SlackBlocks::InvalidBlockType,
-              "initial_options must include all SlackBlocks::Option objects within a #{self.class} block"
-          end
-          # TODO: Come back and make this more performant.
-          #       Do we expose and extract the SlackBlocks::OptionGroup#options out and do the comparison against that Set?
-          unless option_groups.any? { |option_group| option_group.contains_option?(initial_option) }
-            raise ArgumentError, 'please ensure all initial_options passed are included in one of the options collections present within the option_groups collection'
+          # We want to ensure the initial_options are the same as our Collectable collection, SlackBlocks::Option.
+          validate_incoming_klass(initial_option.class)
+          # And since we are already iterating through the
+          unless options_set.include?(initial_option)
+            raise ArgumentError, 'please ensure all initial_options passed are included in the options collection'
           end
         end
       end
@@ -54,7 +50,7 @@ module SlackBlocks
         else
           raise ArgumentError, 'must pass a String or SlackBlocks::PlainText to placeholder keyword argument'
         end
-      @option_groups = option_groups
+      @options = options
       validate_collection_size
       validate_collection_contents
       @initial_options = initial_options
@@ -69,7 +65,7 @@ module SlackBlocks
         'type' => 'multi_static_select',
         'action_id' => @action_id,
         'placeholder' => @placeholder.as_json,
-        'option_groups' => @option_groups.map(&:as_json),
+        'options' => @options.map(&:as_json),
         'initial_options' => @initial_options&.map(&:as_json),
         'confirm' => @confirm&.as_json,
         'max_selected_items' => @max_selected_items,

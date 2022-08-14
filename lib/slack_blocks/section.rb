@@ -13,6 +13,7 @@ require_relative 'image'
 require_relative 'overflow'
 require_relative 'radio_buttons'
 require_relative 'time_picker'
+require_relative 'ungrouped_multi_static_select'
 require_relative 'ungrouped_static_select'
 require_relative 'users_select'
 
@@ -48,6 +49,7 @@ module SlackBlocks
       SlackBlocks::Overflow,
       SlackBlocks::RadioButtons,
       SlackBlocks::TimePicker,
+      SlackBlocks::UngroupedMultiStaticSelect,
       SlackBlocks::UngroupedStaticSelect,
       SlackBlocks::UsersSelect
     ]).freeze
